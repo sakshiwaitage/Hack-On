@@ -70,5 +70,5 @@ Ensure you have the following installed on your system:
 This project is open-source and available under the MIT License.
 
 ## Contact
-For queries, feel free to reach out via GitHub Issues or email: [your-email@example.com]
+For queries, feel free to reach out via GitHub Issues or email: sakshiwaitage245@gmail.com
 
