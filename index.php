@@ -1,3 +1,11 @@
+<?php
+session_start();
+if (!isset($_SESSION["user_id"])) {
+    header("Location: login.html"); // Redirect to login page if not logged in
+    exit();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,24 +29,26 @@
             <li class="spacer"></li>
 
             <!-- Navigation Links shifted to the right -->
-            <li><a href="quize.html">Quizzes</a></li>
+            <li><a href="quizzes.php">Quizzes</a></li>
             <li class="dropdown">
-                <a href="puzzle.html">Puzzles ▼</a>
+                <a href="puzzles.php">Puzzles ▼</a>
                 <ul class="dropdown-menu">
-                    <li><a href="puzzle1.html">Science</a></li>
-                    <li><a href="puzzle2.html">Business</a></li>
-                    <li><a href="puzzle3.html">Everyday Language</a></li>
+                    <li><a href="puzzle1.php">Science</a></li>
+                    <li><a href="puzzle2.php">Business</a></li>
+                    <li><a href="puzzle3.php">Everyday Language</a></li>
                 </ul>
             </li>
-            <li><a href="challenge.html">Challenges</a></li>
-            <li><a href="leaderboard.html">Leaderboard</a></li>
-            <li class="right"><a href="#">Sign In</a></li>
+            <li><a href="challenges.php">Challenges</a></li>
+            <li><a href="leaderboard.php">Leaderboard</a></li>
+
+            <!-- Logout Button -->
+            <li class="right"><a href="logout.php">Logout</a></li>
         </ul>
     </nav>
 
     <!-- Introduction Section -->
     <section class="hero">
-        <h1>Expand Your Vocabulary with Fun!</h1>
+        <h1>Welcome, <?php echo htmlspecialchars($_SESSION["username"]); ?>!</h1>
         <p>Complete challenges, solve puzzles, and take quizzes to become a vocab master.</p>
         <a href="#challenges" class="cta">Get Started</a>
     </section>
@@ -61,7 +71,6 @@
             <p>Compete with others and climb the leaderboard as you master new words.</p>
         </div>
     </section>
-
 
     <script src="script.js"></script>
 </body>

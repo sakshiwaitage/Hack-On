@@ -2,7 +2,7 @@
 $servername = "localhost";
 $username = "root";  // Change if you set a MySQL password
 $password = "DBMS@123";      // Leave blank if no password
-$database = "user_auth";
+$database = "gamedb";
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $database);

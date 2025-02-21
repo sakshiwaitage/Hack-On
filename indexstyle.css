@@ -132,23 +132,25 @@ nav ul li a:hover {
     display: inline-block;
 }
 
-/* Adjusted Dropdown Menu */
 .dropdown-menu {
-    display: none;
+    display: block; /* Keep it in flow */
     position: absolute;
-    top: 100%; /* Ensures it appears directly below the navbar */
+    top: 100%;
     left: 0;
     background-color: #FEFAE0;
-    width: 160px; /* Adjusted width for better fit */
+    width: 160px;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
     z-index: 10;
     list-style: none;
     padding: 5px 0;
-    margin-top: 15px;
+    margin-top: 5px;
     border-radius: 3px;
     border: 1px solid #CCD5AE;
+    
+    opacity: 0; /* Initially hidden */
+    visibility: hidden; /* Prevents interaction */
+    transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
 }
-
 /* Dropdown Menu Items */
 .dropdown-menu li {
     padding: 5px;
@@ -174,6 +176,7 @@ nav ul li a:hover {
 
 /* Show Dropdown on Hover */
 .dropdown:hover .dropdown-menu {
-    display: block;
+    opacity: 1;
+    visibility: visible;
 }
 

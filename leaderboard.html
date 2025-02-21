@@ -3,55 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Leaderboard 🏆</title>
-    <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            background: #CCD5AE;
-            text-align: center;
-            color: white;
-        }
-        .leaderboard-container {
-            background: #FEFAE0;
-            padding: 20px;
-            margin: 20px auto;
-            width: 60%;
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-        }
-        h2 {
-            color: #1d1c1c;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
-        th, td {
-            padding: 12px;
-            border: 1px solid #ddd;
-            background: white;
-            color: black;
-        }
-        th {
-            background: #ff4081;
-            color: white;
-        }
-    </style>
+    <title>Leaderboard</title>
+    <link rel="stylesheet" href="leaderboard.css">
 </head>
 <body>
-    <nav>
-        <a href="index.html">Home</a>
-        <a href="leaderboard.html">Leaderboard</a>
-    </nav>
-    
+
     <div class="leaderboard-container">
-        <h2>Leaderboard 🏆</h2>
+        <h2>Leaderboard</h2>
+
+        <select id="gameSelect">
+            <option value="quizzes">Quizzes</option>
+            <option value="challenges">Challenges</option>
+            <option value="puzzles">Puzzles</option>
+        </select>
+
         <table>
             <thead>
                 <tr>
                     <th>Rank</th>
-                    <th>Player</th>
+                    <th>Name</th>
                     <th>Score</th>
                 </tr>
             </thead>
@@ -60,24 +30,30 @@
     </div>
 
     <script>
-        function loadLeaderboard() {
-            let leaderboard = JSON.parse(localStorage.getItem("leaderboard")) || [];
-            let leaderboardTable = document.getElementById("leaderboard");
-            leaderboardTable.innerHTML = "";
+        function fetchLeaderboard(gameType) {
+            fetch(`get_leaderboard.php?game_type=${gameType}`)
+            .then(response => response.json())
+            .then(data => {
+                let leaderboardTable = document.getElementById("leaderboard");
+                leaderboardTable.innerHTML = "";
 
-            leaderboard.sort((a, b) => b.score - a.score);
-
-            leaderboard.forEach((entry, index) => {
-                let row = `<tr>
-                    <td>${index + 1}</td>
-                    <td>${entry.username}</td>
-                    <td>${entry.score}</td>
-                </tr>`;
-                leaderboardTable.innerHTML += row;
+                data.forEach((player, index) => {
+                    let row = `<tr>
+                        <td>${index + 1}</td>
+                        <td>${player.player_name}</td>
+                        <td>${player.score}</td>
+                    </tr>`;
+                    leaderboardTable.innerHTML += row;
+                });
             });
         }
 
-        loadLeaderboard();
+        document.getElementById("gameSelect").addEventListener("change", function() {
+            fetchLeaderboard(this.value);
+        });
+
+        fetchLeaderboard("quizzes");  // Show quizzes leaderboard by default
     </script>
+
 </body>
 </html>
