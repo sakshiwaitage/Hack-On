@@ -1,4 +1,116 @@
-/* Basic Reset */
+/* General Styling */
+body {
+    font-family: "Arial", sans-serif;
+    background-color: #f4f7fc;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
+
+/* Container for the Crossword */
+.container {
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 20px;
+    background: white;
+    border-radius: 15px; /* Rounded corners */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Title (Theme Name) */
+h1 {
+    font-size: 28px;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+/* Crossword Puzzle Grid */
+#crossword-container {
+    display: grid;
+    grid-template-columns: repeat(5, 50px); /* Adjust for different puzzles */
+    grid-gap: 5px;
+    justify-content: center;
+    padding: 20px;
+    background: linear-gradient(135deg, #f8f9fa, #e3eaf2);
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Crossword Input Cells */
+.cell {
+    width: 50px;
+    height: 50px;
+    font-size: 22px;
+    font-weight: bold;
+    text-transform: uppercase;
+    text-align: center;
+    border: 2px solid #000;
+    border-radius: 8px; /* Rounded corners */
+    background-color: white;
+    color: #333;
+    transition: all 0.2s;
+}
+
+/* Disabled Cells (Empty Spaces) */
+.cell[disabled] {
+    background-color: #bfc9d4;
+    border: none;
+}
+
+/* Focus (When Typing) */
+.cell:focus {
+    outline: none;
+    background-color: #e8f0fe;
+    border: 2px solid #1e90ff;
+}
+
+/* Clues Section */
+#clues {
+    text-align: left;
+    background: #ffffff;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+}
+
+/* Clue List */
+#clue-list {
+    list-style: none;
+    padding: 0;
+}
+
+#clue-list li {
+    margin: 5px 0;
+    font-size: 16px;
+}
+
+/* Check Answer Button */
+button {
+    margin-top: 20px;
+    padding: 12px 25px;
+    font-size: 18px;
+    font-weight: bold;
+    border: none;
+    background-color: #28a745;
+    color: white;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: 0.3s;
+}
+
+button:hover {
+    background-color: #218838;
+}
+
+/* Result Message */
+#result-message {
+    display: none;
+    margin-top: 20px;
+    font-size: 22px;
+    font-weight: bold;
+    color: #28a745;
+}
 body{
     background-color:#FEFAE0;
 }
@@ -176,4 +288,3 @@ nav ul li a:hover {
 .dropdown:hover .dropdown-menu {
     display: block;
 }
-
