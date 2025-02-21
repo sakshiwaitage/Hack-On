@@ -4,9 +4,198 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Leaderboard</title>
-    <link rel="stylesheet" href="leaderboard.css">
+    <style>
+        /* Google Font */
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #FEFAE0;
+            color: #000;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Navigation Bar */
+        nav {
+            background: #CCD5AE;
+            padding: 10px 20px;
+            position: relative; /* Ensures dropdown stays inside navbar */
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            padding: 0;
+            margin: 0;
+           
+        }
+
+        nav ul li {
+            position: relative;
+            margin: 0 15px;
+            
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: black;
+            font-size: 18px;
+            padding: 8px 12px;
+            display: block;
+        }
+
+        nav ul li a:hover {
+            background: #E9EDC9;
+            border-radius: 5px;
+        }
+
+        /* Dropdown Menu */
+        .dropdown {
+            position: relative;
+        }
+
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: #FEFAE0;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+            border-radius: 5px;
+            min-width: 160px;
+            z-index: 1000;
+            padding: 5px 0;
+        }
+
+        .dropdown-menu li {
+            padding: 10px;
+            text-align: left;
+        }
+
+        .dropdown-menu li a {
+            text-decoration: none;
+            color: black;
+            display: block;
+            padding: 8px 12px;
+        }
+
+        .dropdown-menu li a:hover {
+            background: #E9EDC9;
+        }
+
+        /* Show dropdown on hover */
+        .dropdown:hover .dropdown-menu {
+            display: block;
+        }
+
+        /* Leaderboard Container */
+        .leaderboard-container {
+            width: 80%;
+            max-width: 600px;
+            margin: 50px auto;
+            background: #CCD5AE;
+            padding: 20px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        h2 {
+            font-size: 28px;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        /* Game Selection Dropdown */
+        #gameSelect {
+            padding: 10px;
+            width: 100%;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            background: #1f1f1f;
+            color: #fff;
+            margin-bottom: 15px;
+            outline: none;
+            cursor: pointer;
+            transition: background 0.3s ease-in-out;
+        }
+
+        #gameSelect:hover {
+            background: #292929;
+        }
+
+        /* Table */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        th, td {
+            padding: 12px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+        }
+
+        th {
+            background: rgba(93, 59, 59, 0.2);
+            text-transform: uppercase;
+        }
+
+        tr:hover {
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        td:first-child {
+            font-weight: bold;
+            color: #ffcc00;
+        }
+
+        /* Winner Animation */
+        @keyframes glow {
+            0% { box-shadow: 0 0 10px #ffcc00; }
+            50% { box-shadow: 0 0 20px #ffcc00; }
+            100% { box-shadow: 0 0 10px #ffcc00; }
+        }
+
+        tr:first-child td {
+            animation: glow 1.5s infinite alternate;
+        }
+        span{
+            padding-right: 300px;
+        }
+    </style>
 </head>
 <body>
+
+    <nav>
+        <ul>
+            <li class="logo">
+                <img src="https://img.icons8.com/?size=100&id=N4VuU_HmGhBq&format=png&color=ffffff" width="40px">
+                <span>Vocabulary Learning Platform</span>
+            </li>
+
+            <li><a href="quize.html">Quizzes</a></li>
+
+            <li class="dropdown">
+                <a href="#">Puzzles ▼</a>
+                <ul class="dropdown-menu">
+                    <li><a href="puzzle1.html">Science</a></li>
+                    <li><a href="puzzle2.html">Business</a></li>
+                    <li><a href="puzzle3.html">Everyday Language</a></li>
+                </ul>
+            </li>
+
+            <li><a href="challenge.html">Challenges</a></li>
+            <li><a href="leaderboard.html">Leaderboard</a></li>
+            <li><a href="signup.html">Sign In</a></li>
+        </ul>
+    </nav>
 
     <div class="leaderboard-container">
         <h2>Leaderboard</h2>
@@ -45,7 +234,8 @@
                     </tr>`;
                     leaderboardTable.innerHTML += row;
                 });
-            });
+            })
+            .catch(error => console.error("Error fetching leaderboard:", error));
         }
 
         document.getElementById("gameSelect").addEventListener("change", function() {

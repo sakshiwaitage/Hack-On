@@ -5,17 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vocabulary Quiz Game 🎮</title>
     <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            background: #CCD5AE;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            flex-direction: column;
-            color: white;
-        }
         .quiz-container {
             background: #FEFAE0;
             padding: 20px;
@@ -24,6 +13,8 @@
             text-align: center;
             width: 80%;
             max-width: 500px;
+            margin-left: 550px;
+            margin-top: 200px;
         }
         h2 {
             color: #1d1c1c;
@@ -64,8 +55,37 @@
             color: #ff9800;
         }
     </style>
+    <link rel="stylesheet" href="indexstyle.css">
 </head>
 <body>
+    <nav>
+        <ul>
+            <!-- Logo on the left -->
+            <li class="logo">
+                <img src="https://img.icons8.com/?size=100&id=N4VuU_HmGhBq&format=png&color=ffffff" width="40px">
+                <span>Vocabulary Learning Platform</span>
+            </li>
+
+            <!-- Empty space to push items right -->
+            <li class="spacer"></li>
+
+            <!-- Navigation Links shifted to the right -->
+            <li><a href="quizzes.html">Quizzes</a></li>
+            <li class="dropdown">
+                <a href="#">Puzzles ▼</a>
+                <ul class="dropdown-menu">
+                    <li><a href="puzzle1.html">Science</a></li>
+                    <li><a href="puzzle2.html">Business</a></li>
+                    <li><a href="puzzle3.html">Everyday Language</a></li>
+                </ul>
+            </li>
+            <li><a href="challenge.html">Challenges</a></li>
+            <li><a href="leaderboard.html">Leaderboard</a></li>
+
+            <!-- Logout Button -->
+            <li class="right"><a href="logout.php">Logout</a></li>
+        </ul>
+    </nav>
     <div id="subject-selection" class="quiz-container">
         <h2>Choose a Subject 📚</h2>
         <button class="subject" onclick="selectSubject('science')">🔬 Science</button>
@@ -99,36 +119,52 @@
             science: {
                 easy: [
                     { question: "What is H2O?", options: ["Water", "Oxygen", "Hydrogen"], answer: "Water" },
-                    { question: "What planet is known as the Red Planet?", options: ["Mars", "Jupiter", "Venus"], answer: "Mars" }
-                ],
-                medium: [],
-                hard: []
-            },
-            business: {
-                easy: [
-                    { question: "What is the main goal of a business?", options: ["Profit", "Loss", "Break-even"], answer: "Profit" },
-                    { question: "What is a SWOT analysis used for?", options: ["Financial Planning", "Market Research", "Strategic Planning"], answer: "Strategic Planning" },
-                    { question: "In which city a National level business meet was organized by CPWD?", options: ["New Delhi", "Mumbai", "Kolkata"], answer: "New Delhi" },
-                    { question: "Which of the following is NOT considered a key business function?", options: ["Marketing", "Operations", " Education"], answer: "Education" },
-                    { question: "What is the term for the people who buy goods or services from a business?", options: ["Customers", "Employees", "Investors"], answer: "Customers" },
+                    { question: "What is the closest planet to the Sun?", options: ["mercury","venus","mars","earth"], answer: "mercury"},
+                    { question: "What do plants need to make their own food?", options: ["Oxygen, water, and soil","Sunlight, water, and carbon dioxide","Sugar, sunlight, and oxygen","Carbon dioxide, nitrogen, and water"], answer: "Sunlight, water, and carbon dioxid" },
+                    { question: "What planet is known as the Red Planet?", options: ["Mars", "Jupiter", "Venus"], answer: "Mars" },
+                    {question: "What is the colour of mars?", options: ["red", "blue", "yellow","green"], answer: "red"  },
                 ],
                 medium: [
                     { question: "Which pricing strategy involves setting low prices to attract customers?", options: ["Penetration Pricing", "Skimming", "Premium Pricing"], answer: "Penetration Pricing" },
-                    { question: "Which financial statement provides a snapshot of a company’s financial position at a specific point in time?", options: ["Income Statement",
-                      "Balance Sheet", "Cash Flow Statement", "Statement of Retained Earnin"], answer: "Balance Sheet" },
-                    { question: "What is the primary purpose of a SWOT analysis?", options: ["To evaluate employee performance", "To assess a company’s financial health",
-                    "To analyze strengths, weaknesses, opportunities, and threats","To determine pricing strategiesIncome Statement"], answer: "To analyze strengths, weaknesses, opportunities, and threats" },
-                    { question: "What does the 4PS of marketing stand for?", options: ["People, Product, Price, Promotion","Product, Price, Place, Promotion","Price, Process, People, Profit",
-                    "Planning, Promotion, Pricing, Positioning"], answer: "Product, Price, Place, Promotion" },
-                    { question: "Which type of business structure provides limited liability protection to its owners while allowing pass-through taxation?", options: ["Sole Proprietorship",
-                    "Partnership","Corporation","Limited Liability Company (LLC)"], answer: " Limited Liability Company (LLC)" },],
+                    { question: "Which organ in the human body produces insulin?", options: ["Liver","Pancreas","Stomach","Kidney"], answer: ["pancreas"] },
+                    { question: "What part of the plant is responsible for photosynthesis?", options: ["Root","Stem","Leaf","Flower"], answer: ["Leaf"] },
+                    { question: "What is the chemical formula of water?", options: ["Magnetism","Gravity","Friction","Inertia"], answer: ["Gravity"] },
+                    { question: "Which gas do humans exhale when they breathe out?", options: [" Oxygen","Nitrogen","Carbon dioxide","Hydrogen"], answer: ["carbon dioxide"] },
+                ],
                 hard: [
-                { question: "In corporate finance, which of the following is NOT a component of the Weighted Average Cost of Capital (WACC)?", options: ["Cost of Debt",
-                "Cost of Equity","Market Risk Premium","Tax Rate"], answer: "Market Risk Premium" }, 
-                { question: "In financial reporting, which of the following accounting principles requires companies to recognize revenue when it is earned, regardless of when cash is received?", options: ["Matching Principle","Conservatism Principle","Revenue Recognition Principle","Accrual Principle"], answer: "Revenue Recognition Principle" }, 
-                { question: "According to Michael Porter's Five Forces Model, which force determines the intensity of competition within an industry?", options: ["Threat of New Entrants","Bargaining Power of Buyers","Industry Rivalry","Threat of Substitutes"], answer: "Industry Rivalry" }, 
-                { question: "Which economic theory suggests that firms exist to minimize transaction costs associated with market exchanges?", options: ["Theory of Comparative Advantage","Principal-Agent Theory","Transaction Cost Theory","Game Theory"], answer: " Transaction Cost Theory" }, 
-                { question: "What is Porter's Five Forces Model used for?", options: ["Industry Analysis", "Customer Segmentation", "Product Development"], answer: "Industry Analysis" }
+                
+                    { question: "In quantum mechanics, what principle states that it is impossible to simultaneously determine the exact position and momentum of a particle?", options: ["Pauli Exclusion Principle","Heisenberg Uncertainty Principle","Schrödinger’s Equation","Planck’s Constant Rule"], answer: ["Heisenberg Uncertainty Principle"] },
+                    { question: "Which fundamental particle is responsible for the strong nuclear force?", options: ["Photon","Gluon","Neutrino","Higgs boson"], answer: ["Gluon"] },
+                    { question: "What is the second most abundant element in the Earth's crust?", options: ["Oxygen","Silicon","Iron","Aluminum"], answer: ["Silicon"] },
+                    { question: "Which law of thermodynamics states that entropy always increases in an isolated system?", options: [" Zeroth law","First law","Second law","Third law"], answer: ["Second law"] },
+                    { question: "What is the heaviest naturally occurring element on Earth?", options: ["Uranium","Plutonium","Osmium","Thorium"], answer: ["Uranium"] },
+                ]
+            },
+            business: {
+                easy: [
+                { question: "What is the main goal of a business?", options: ["Profit", "Loss", "Break-even"], answer: "Profit" },
+                    { question: "What is a SWOT analysis used for?", options: ["Financial Planning", "Market Research", "Strategic Planning"], answer: "Strategic Planning" },
+                    { question: "In which city a National level business meet was organized by CPWD?", options: ["New Delhi", "Mumbai", "Kolkata"], answer: "New Delhi" },
+                    { question: "Which of the following is NOT considered a key business function?", options: ["Marketing", "Operations", " Education"], answer: "Education" },
+                    { question: "What is the term for the people who buy goods or services from a business?", options: ["Customers", "Employees", "Investors"], answer: "Customers" }
+
+                ],
+                medium: [
+                    { question: "Which pricing strategy involves setting low prices to attract customers?", options: ["Penetration Pricing", "Skimming", "Premium Pricing"], answer: "Penetration Pricing" },
+                    { question: "What is the formula of water?", options: ["CO₂","H₂O","O₂","NaCl"], answer: ["H₂O"] },
+                    { question: "What part of the plant is responsible for photosynthesis?", options: ["Root","Stem","Leaf","Flower"], answer: ["Leaf"] },
+                    { question: "What force keeps planets in orbit around the Sun?", options: ["Magnetism","Gravity","Friction","Inertia"], answer: ["Gravity"] },
+                    { question: "Which gas do humans exhale when they breathe out?", options: [" Oxygen","Nitrogen","Carbon dioxide","Hydrogen"], answer: ["carbon dioxide"] },
+
+                ],
+                hard: [
+                    { question: "In corporate finance, which of the following is NOT a component of the Weighted Average Cost of Capital (WACC)?", options: ["Cost of Debt", "Cost of Equity", "Market Risk Premium", "Tax Rate"], answer: "Market Risk Premium" },
+                    { question: "Which accounting standard is followed by companies in most of the world except the U.S.?", options: ["IFRS","GAAP","SEC Compliance Rules","SOX"], answer: [" IFRS (International Financial Reporting Standards)"] },
+                    { question: "What is the term for a hostile takeover defense where a company sells its most valuable assets to make itself less attractive to the acquirer?", options: ["Poison pill","White Knight","Crown Jewel Defense","Golden Parachute"], answer: ["Crown Jewel Defense"] },
+                    { question: "Which economic theory suggests that in the long run, countries should specialize in producing goods where they have a comparative advantage?", options: ["Keynesian Economics","Game Theory","Comparative Advantage Theory","Trickle-Down Economics"], answer: ["Comparative Advantage Theory"] },    
+                    { question: "Which financial metric measures a company's ability to generate profit relative to its revenue, assets, or equity?", options: ["EBITDA","ROE","ROI","ROA"], answer: ["ROE (Return on Equity)"] },
+                    { question: "What is Porter's Five Forces Model used for?", options: ["Industry Analysis", "Customer Segmentation", "Product Development"], answer: "Industry Analysis" }
+
                 ]
             }
         };
@@ -177,6 +213,15 @@
 
         function shuffleArray(array) {
             return array.sort(() => Math.random() - 0.5);
+        }
+
+        function saveScore() {
+            fetch('save_score.php', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                body: `score=${score}`
+            }).then(response => response.text())
+              .then(data => alert(data));
         }
     </script>
 </body>

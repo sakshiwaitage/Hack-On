@@ -29,20 +29,20 @@ if (!isset($_SESSION["user_id"])) {
             <li class="spacer"></li>
 
             <!-- Navigation Links shifted to the right -->
-            <li><a href="quizzes.php">Quizzes</a></li>
+            <li><a href="quizzes.html">Quizzes</a></li>
             <li class="dropdown">
-                <a href="puzzles.php">Puzzles ▼</a>
+                <a href="#">Puzzles ▼</a>
                 <ul class="dropdown-menu">
-                    <li><a href="puzzle1.php">Science</a></li>
-                    <li><a href="puzzle2.php">Business</a></li>
-                    <li><a href="puzzle3.php">Everyday Language</a></li>
+                    <li><a href="puzzle1.html">Science</a></li>
+                    <li><a href="puzzle2.html">Business</a></li>
+                    <li><a href="puzzle3.html">Everyday Language</a></li>
                 </ul>
             </li>
-            <li><a href="challenges.php">Challenges</a></li>
-            <li><a href="leaderboard.php">Leaderboard</a></li>
+            <li><a href="challenge.html">Challenges</a></li>
+            <li><a href="leaderboard.html">Leaderboard</a></li>
 
             <!-- Logout Button -->
-            <li class="right"><a href="logout.php">Logout</a></li>
+            <li class="right"><a href="signup.html">Sign In</a></li>
         </ul>
     </nav>
 

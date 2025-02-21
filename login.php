@@ -1,14 +1,13 @@
 <?php
-session_start(); // Start the session
+session_start();
 require 'db.php'; // Include database connection
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $user_identifier = trim($_POST["user_identifier"]); // Can be email or username
+    $user_identifier = trim($_POST["user_identifier"]);
     $password = $_POST["password"];
 
-    // ✅ Validate Inputs
     if (empty($user_identifier) || empty($password)) {
-        echo json_encode(["success" => false, "message" => "All fields are required!"]);
+        header("Location: login.html"); // Redirect back to login if fields are empty
         exit();
     }
 
@@ -31,20 +30,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         // ✅ Verify Password
         if (password_verify($password, $hashed_password)) {
-            // Store session variables
             $_SESSION["user_id"] = $id;
             $_SESSION["username"] = $username;
             $_SESSION["email"] = $email;
-            
-            // ✅ Return success response with redirection
-            echo json_encode(["success" => true, "redirect" => "index.php"]);
+
+            // ✅ Redirect to index.php immediately
+            header("Location: index.php");
             exit();
-        } else {
-            echo json_encode(["success" => false, "message" => "Invalid password!"]);
         }
-    } else {
-        echo json_encode(["success" => false, "message" => "User not found!"]);
     }
+
+    // Redirect back to login if credentials are incorrect
+    header("Location: login.html");
+    exit();
 
     $stmt->close();
     $conn->close();
