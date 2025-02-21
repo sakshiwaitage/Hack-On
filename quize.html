@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vocabulary Quiz Game 🎮</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: #CCD5AE;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            flex-direction: column;
+            color: white;
+        }
+        .quiz-container {
+            background: #FEFAE0;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            width: 80%;
+            max-width: 500px;
+        }
+        h2 {
+            color: #1d1c1c;
+        }
+        .option, .subject, .difficulty {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            margin: 8px 0;
+            border: none;
+            border-radius: 8px;
+            background: #ff4081;
+            color: white;
+            font-size: 18px;
+            cursor: pointer;
+            transition: transform 0.2s ease-in-out, background 0.3s;
+        }
+        .option:hover, .subject:hover, .difficulty:hover {
+            transform: scale(1.08);
+            background: #e91e63;
+        }
+        .correct {
+            background: #4caf50 !important;
+        }
+        .wrong {
+            background: #f44336 !important;
+        }
+        .score {
+            font-size: 22px;
+            margin-top: 20px;
+            color: black;
+            font-weight: bold;
+        }
+        .badge {
+            font-size: 24px;
+            font-weight: bold;
+            margin-top: 10px;
+            color: #ff9800;
+        }
+    </style>
+</head>
+<body>
+    <div id="subject-selection" class="quiz-container">
+        <h2>Choose a Subject 📚</h2>
+        <button class="subject" onclick="selectSubject('science')">🔬 Science</button>
+        <button class="subject" onclick="selectSubject('business')">💼 Business Strategy</button>
+        <button class="subject" onclick="selectSubject('everyday')">🗣️ Everyday Language</button>
+    </div>
+    
+    <div id="difficulty-selection" class="quiz-container" style="display: none;">
+        <h2>Select Difficulty 🎯</h2>
+        <button class="difficulty" onclick="selectDifficulty('easy')">🐣 Easy</button>
+        <button class="difficulty" onclick="selectDifficulty('medium')">⚡ Medium</button>
+        <button class="difficulty" onclick="selectDifficulty('hard')">🔥 Hard</button>
+    </div>
+    
+    <div id="quiz-container" class="quiz-container" style="display: none;">
+        <h2 id="question">Loading question...</h2>
+        <div id="options"></div>
+        <div class="score" id="score">Score: 0</div>
+        <div class="badge" id="badge"></div>
+        <button onclick="saveScore()">Save Score</button>
+    </div>
+    
+    <script>
+        let selectedSubject = '';
+        let selectedDifficulty = '';
+        let currentQuestionIndex = 0;
+        let score = 0;
+        let quizQuestions = [];
+
+        const questions = {
+            science: {
+                easy: [
+                    { question: "What is H2O?", options: ["Water", "Oxygen", "Hydrogen"], answer: "Water" },
+                    { question: "What planet is known as the Red Planet?", options: ["Mars", "Jupiter", "Venus"], answer: "Mars" }
+                ],
+                medium: [],
+                hard: []
+            },
+            business: {
+                easy: [
+                    { question: "What is the main goal of a business?", options: ["Profit", "Loss", "Break-even"], answer: "Profit" },
+                    { question: "What is a SWOT analysis used for?", options: ["Financial Planning", "Market Research", "Strategic Planning"], answer: "Strategic Planning" },
+                    { question: "In which city a National level business meet was organized by CPWD?", options: ["New Delhi", "Mumbai", "Kolkata"], answer: "New Delhi" },
+                    { question: "In which city a National level business meet was organized by CPWD?", options: ["New Delhi", "Mumbai", "Kolkata"], answer: "New Delhi" },
+                ],
+                medium: [
+                    { question: "Which pricing strategy involves setting low prices to attract customers?", options: ["Penetration Pricing", "Skimming", "Premium Pricing"], answer: "Penetration Pricing" }
+                ],
+                hard: [
+                    { question: "What is Porter's Five Forces Model used for?", options: ["Industry Analysis", "Customer Segmentation", "Product Development"], answer: "Industry Analysis" }
+                ]
+            }
+        };
+
+        function selectSubject(subject) {
+            selectedSubject = subject;
+            document.getElementById('subject-selection').style.display = 'none';
+            document.getElementById('difficulty-selection').style.display = 'block';
+        }
+        
+        function selectDifficulty(difficulty) {
+            selectedDifficulty = difficulty;
+            document.getElementById('difficulty-selection').style.display = 'none';
+            document.getElementById('quiz-container').style.display = 'block';
+            score = 0;
+            quizQuestions = shuffleArray([...questions[selectedSubject][selectedDifficulty]]).slice(0, 10);
+            currentQuestionIndex = 0;
+            loadQuestion();
+        }
+
+        function loadQuestion() {
+            if (currentQuestionIndex < quizQuestions.length) {
+                let currentQuestion = quizQuestions[currentQuestionIndex];
+                document.getElementById("question").innerText = currentQuestion.question;
+                document.getElementById("options").innerHTML = "";
+                currentQuestion.options.forEach(option => {
+                    let btn = document.createElement("button");
+                    btn.innerText = option;
+                    btn.className = "option";
+                    btn.onclick = () => checkAnswer(option, currentQuestion.answer);
+                    document.getElementById("options").appendChild(btn);
+                });
+            } else {
+                document.getElementById("quiz-container").innerHTML = `<h2>Quiz Completed! 🎉</h2><p>Your Score: ${score}</p>`;
+            }
+        }
+
+        function checkAnswer(selected, correct) {
+            if (selected === correct) {
+                score++;
+                document.getElementById("score").innerText = `Score: ${score}`;
+            }
+            currentQuestionIndex++;
+            setTimeout(loadQuestion, 1000);
+        }
+
+        function shuffleArray(array) {
+            return array.sort(() => Math.random() - 0.5);
+        }
+    </script>
+</body>
+</html>
